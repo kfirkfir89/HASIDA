@@ -36,7 +36,7 @@ function hasidaCalculator(loanAmount, loanPayment, loanRate){
         remainingBalance: [loanAmount],
     };
 
-    results.monthlyPayment = (loanAmount) * (loanRate/1200) / (1 - (1 + loanRate/1200)**(-60));
+    results.monthlyPayment = (loanAmount) * (loanRate/1200) / (1 - (1 + loanRate/1200)**(-loanPayment));
 
     for ( let i = 0 ; i < loanPayment ; i++){
 
