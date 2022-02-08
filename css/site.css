@@ -4,6 +4,7 @@
     --dark-color: #292929;
     --white-color: #f8fffa;
     --navFot-color: #2a8330;
+    --gray: #d6d6d6;
 }
 
 .smallfont{
@@ -24,6 +25,7 @@ body {
     color:var(--dark-color);
     background-color: var(--white-color);
 }
+
 
 nav {
     background-color:var(--navFot-color);
@@ -87,6 +89,14 @@ code[class*="language-"], pre[class*="language-"] {
 }
 
 .btn-outline-dark:hover{
+    background-color: var(--navFot-color);
+}
+
+.bg{
+    background-color: var(--gray);
+}
+
+.bgTable{
     background-color: var(--navFot-color);
 }
 

@@ -55,7 +55,76 @@
 
     <!-- ===  Main Section  === -->
     <main class="flex-shrink-0">
-        <div class="container"></div>
+        <div class="container-lg mt-5">
+            <div class="row">
+                <h1 class="gy-5">Loan Calculator</h1>
+                <div class="col p-3 bg">
+                    <form class="row row-cols-1 g-3">
+                        <div class="col">
+                            <label class="form-label">Loan Amount:</label>
+                            <input id="loanAmount" type="number" class="form-control" placeholder="Loan Amount" aria-label="Loan Amount">
+                        </div>
+                        <div class="col">
+                            <label class="form-label">Payments:</label>
+                            <input id="payments" type="number" class="form-control" placeholder="Payments" aria-label="Payments">
+                        </div>
+                        <div class="col">
+                            <label class="form-label">Rate:</label>
+                            <input id="rate" type="number" class="form-control" placeholder="Rate" aria-label="Rate">
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <button id="btnCalculate" type="button" class="btn btn-outline-dark text-lig mt-2">Calculate</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col">
+                    <div class="d-flex flex-column text-center">
+                        <h4>Your Monthly Payments</h4>
+                        <table class="table table-borderless display-3">
+                            <th id="monthlyPayment"><!--monthly payment result goes here--></th>
+                        </table>
+                    </div>
+                    <table class="table table-sm table-borderless">
+                        <tbody>
+                            <tr>
+                                <td>Total Principcal:</td>
+                                <td id="totalPrincipcal"><!--Total Principcalt result goes here--></td>
+                            </tr>
+                            <tr>
+                                <td>Total Interest:</td>
+                                <td id="totalInterest"><!--Total Interest result goes here--></td>
+                            </tr>
+                            <tr>
+                                <td>Total Cost:</td>
+                                <td id="totalCost"> <!--Total Cost result goes here--></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <table class="table table-striped gy-2">
+                    <thead class="bgTable text-light text-left">
+                        <tr>
+                            <td>Month</td>
+                            <td>Payment</td>
+                            <td>Principcal</td>
+                            <td>Interest</td>
+                            <td>Total Interest</td>
+                            <td class="text-center">Balance</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </main>
 
     <!-- ===  Footer Section  === -->
@@ -88,6 +157,9 @@
         integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
     </script>
     <script src="/js/site.js"></script>
+    <script>
+        document.getElementById("btnCalculate").addEventListener("click", getValues);
+    </script>
     
 </body>
 
