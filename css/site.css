@@ -1,8 +1,9 @@
 :root{
-    --primary-color: #1D5888;
-    --secondary-color: #FF9A3B; /*#1CA8FC-blue*/
+    --primary-color: #175e34;
+    --secondary-color: #944515;
     --dark-color: #292929;
-    --white-color: #dff3e4;
+    --white-color: #f8fffa;
+    --navFot-color: #2a8330;
 }
 
 .smallfont{
@@ -13,20 +14,23 @@
     .smallfont{
         font-size: 1rem;
     }
-   
+    div >.fa-2x{
+        font-size: 4rem;
+    }
 }
 
 
 body {
     color:var(--dark-color);
+    background-color: var(--white-color);
 }
 
 nav {
-    background-color:var(--dark-color);
+    background-color:var(--navFot-color);
 }
 
 footer {
-    background-color: var(--dark-color);
+    background-color: var(--navFot-color);
 
 }
 
@@ -80,6 +84,10 @@ code[class*="language-"], pre[class*="language-"] {
     height: 30px;
     margin-right: 10px;
     opacity: 0.4;
+}
+
+.btn-outline-dark:hover{
+    background-color: var(--navFot-color);
 }
 
 main>.container {
