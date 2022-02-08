@@ -54,10 +54,10 @@
     </nav>
 
     <!-- ===  Main Section  === -->
-    <main class="flex-shrink-0">
+    <main class="flex-shrink-0 mt-5">
         <div class="container-lg mt-5">
-            <div class="row">
-                <h1 class="gy-5">Loan Calculator</h1>
+            <h1 class="gy-5">Loan Calculator</h1>
+            <div class="row row-cols-1 row-cols-md-2 p-3">
                 <div class="col p-3 bg">
                     <form class="row row-cols-1 g-3">
                         <div class="col">
@@ -73,11 +73,11 @@
                             <input id="rate" type="number" class="form-control" placeholder="Rate" aria-label="Rate">
                         </div>
                         <div class="d-flex justify-content-end">
-                            <button id="btnCalculate" type="button" class="btn btn-outline-dark text-lig mt-2">Calculate</button>
+                            <button id="btnCalculate" type="button" class="btn btn-outline-dark mt-2">Calculate</button>
                         </div>
                     </form>
                 </div>
-                <div class="col">
+                <div class="col my-5">
                     <div class="d-flex flex-column text-center">
                         <h4>Your Monthly Payments</h4>
                         <table class="table table-borderless display-3">
@@ -101,8 +101,10 @@
                         </tbody>
                     </table>
                 </div>
-                <table class="table table-striped gy-2">
-                    <thead class="bgTable text-light text-left">
+            </div>
+            <div class="table-responsive mb-5 p-1">
+                <table class="table table-striped gy-2 text-nowrap">
+                    <thead class="table-sm bgTable text-light text-left">
                         <tr>
                             <td>Month</td>
                             <td>Payment</td>
@@ -112,15 +114,8 @@
                             <td class="text-center">Balance</td>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
+                    <tbody id="results">
+                        <!--results goes here-->
                     </tbody>
                 </table>
             </div>
@@ -151,6 +146,17 @@
             </div>
         </div>
     </footer>
+
+    <template id="resultsTemplate">
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </template>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"

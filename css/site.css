@@ -11,6 +11,7 @@
     font-size: .9rem;
 }
 
+
 @media only screen and (min-width:340px){
     .smallfont{
         font-size: 1rem;
@@ -90,7 +91,14 @@ code[class*="language-"], pre[class*="language-"] {
 
 .btn-outline-dark:hover{
     background-color: var(--navFot-color);
+    border-color: white;
 }
+
+.btn-outline-dark{
+    border-color: var(--navFot-color);
+    color: var(--primary-color);
+}
+
 
 .bg{
     background-color: var(--gray);
