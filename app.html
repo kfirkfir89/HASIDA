@@ -56,10 +56,11 @@
     <!-- ===  Main Section  === -->
     <main class="flex-shrink-0 mt-5">
         <div class="container-lg mt-5">
-            <h1 class="gy-5">Loan Calculator</h1>
-            <div class="row row-cols-1 row-cols-md-2 p-3">
+            <h1>Loan Calculator</h1>
+            <hr>
+            <div class="row row-cols-1 row-cols-md-2 p-lg-3 p-1">
                 <div class="col p-3 bg">
-                    <form class="row row-cols-1 g-3">
+                    <form class="row row-cols-1 g-2">
                         <div class="col">
                             <label class="form-label">Loan Amount:</label>
                             <input id="loanAmount" type="number" class="form-control" placeholder="Loan Amount" aria-label="Loan Amount">
@@ -77,26 +78,26 @@
                         </div>
                     </form>
                 </div>
-                <div class="col my-5">
+                <div class="col my-lg-0 my-3">
                     <div class="d-flex flex-column text-center">
                         <h4>Your Monthly Payments</h4>
                         <table class="table table-borderless display-3">
                             <th id="monthlyPayment"><!--monthly payment result goes here--></th>
                         </table>
                     </div>
-                    <table class="table table-sm table-borderless">
+                    <table class="table table-sm table-borderless text-center">
                         <tbody>
                             <tr>
-                                <td>Total Principcal:</td>
-                                <td id="totalPrincipcal"><!--Total Principcalt result goes here--></td>
+                                <td >Total Principcal:</td>
+                                <td id="totalPrincipcal" class="text-start"><!--Total Principcalt result goes here--></td>
                             </tr>
                             <tr>
                                 <td>Total Interest:</td>
-                                <td id="totalInterest"><!--Total Interest result goes here--></td>
+                                <td id="totalInterest" class="text-start"><!--Total Interest result goes here--></td>
                             </tr>
                             <tr>
                                 <td>Total Cost:</td>
-                                <td id="totalCost"> <!--Total Cost result goes here--></td>
+                                <td id="totalCost" class="text-start"> <!--Total Cost result goes here--></td>
                             </tr>
                         </tbody>
                     </table>
@@ -104,17 +105,17 @@
             </div>
             <div class="table-responsive mb-5 p-1">
                 <table class="table table-striped gy-2 text-nowrap">
-                    <thead class="table-sm bgTable text-light text-left">
+                    <thead class="bgTable text-light">
                         <tr>
                             <td>Month</td>
                             <td>Payment</td>
                             <td>Principcal</td>
                             <td>Interest</td>
                             <td>Total Interest</td>
-                            <td class="text-center">Balance</td>
+                            <td>Balance</td>
                         </tr>
                     </thead>
-                    <tbody id="results">
+                    <tbody id="results" class="text-left">
                         <!--results goes here-->
                     </tbody>
                 </table>
@@ -127,7 +128,7 @@
         <div class="container-fluid ">
             <div class="row row-cols-1 row-cols-lg-3 gy-2">
                 <div class="col text-light d-flex align-items-center order-last order-lg-first">
-                    <div class="smallfont"><span class="text-muted">&copy;2022</span> Kfir Avraham |
+                    <div class="smallfont"><span>&copy;2022</span> Kfir Avraham |
                         Kfirkfir89@gmail.com</div>
                 </div>
                 <div class="col d-flex align-items-center justify-content-center">

@@ -61,16 +61,127 @@
             <div class="row row-cols-1 row-cols-lg-2">
                 <div class="col-lg-8 order-last order-lg-first">
                     <pre class="line-numbers"><code class="language-javascript">
-                        function helloWorld(){
-                            alert("hello world");
-                        }
+                            //get input values from page
+                            //controller function
+                            function getValues(){
+                                
+                                //get the user values from the page
+                                let loanAmount = document.getElementById("loanAmount").value;
+                                let loanPayment = document.getElementById("payments").value;
+                                let loanRate = document.getElementById("rate").value;
+
+                                //we need validate our input
+                                //parse into Integers 
+                                loanAmount = parseInt(loanAmount);
+                                loanPayment = parseInt(loanPayment);
+                                loanRate = parseInt(loanRate);
+
+                                //check that the numbers are integers and if the rate between 1 to 100
+                                if(Number.isInteger(loanAmount) && Number.isInteger(loanPayment) && Number.isInteger(loanRate) 
+                                    && loanRate <= 100 && loanRate > 0){
+                                    //pass the values to calculate
+                                    let results = hasidaCalculator(loanAmount, loanPayment, loanRate);
+                                    //display data
+                                    displayResults(results, loanPayment);
+
+                                }else{
+                                    alert("Rate cant be above 100%");
+                                }
+                            }
+
+                            //calculate the data (monthly payment, principcal, interest, cost)
+                            //logic function
+                            function hasidaCalculator(loanAmount, loanPayment, loanRate){
+
+                                //set up all the varibles that needed in an object
+                                let results = {
+                                    monthlyPayment: "",
+                                    preRemainingBalance: loanAmount,
+                                    totalInterestCounter: 0,
+                                    totalPrincipcal: 0,
+                                    loanPayment: [0],
+                                    interestPayment: [],
+                                    principalPayment: [],
+                                    totalInterest: [0],
+                                    remainingBalance: [loanAmount],
+                                };
+
+                                //calculate the monthly payment
+                                results.monthlyPayment = (loanAmount) * (loanRate/1200) / (1 - (1 + loanRate/1200)**(-loanPayment));
+
+                                //calculate all the data and stores in the obj arrays
+                                for ( let i = 0 ; i < loanPayment ; i++){
+
+                                    results.loanPayment[i] = i+1;
+                                    results.interestPayment[i] = results.preRemainingBalance * loanRate/1200;
+                                    results.principalPayment[i] = results.monthlyPayment - results.interestPayment[i];
+                                    results.totalInterestCounter += results.interestPayment[i];
+                                    results.totalInterest[i] = results.totalInterestCounter;
+                                    results.remainingBalance[i] = results.preRemainingBalance - results.principalPayment[i];
+                                    results.preRemainingBalance = results.remainingBalance[i];
+                                    results.totalPrincipcal += results.principalPayment[i];
+                                }
+
+                                return results;
+
+                            }
+
+                            //display all the table data (row per month)
+                            //display/view function
+                            function displayResults(results, loanPayment){
+                                //gets the tbody element from the page
+                                let tableBody = document.getElementById("results");
+                                //gets the table template
+                                let templateRow = document.getElementById("resultsTemplate");
+                                ////clear table first
+                                tableBody.innerHTML = "";
+                                //display all the data
+                                for( let i = 0 ; i < loanPayment ; i++){
+
+                                    let tableRow = document.importNode(templateRow.content , true);
+
+                                    let rowCols = tableRow.querySelectorAll("td");
+
+                                    rowCols[0].textContent = results.loanPayment[i];
+                                    rowCols[1].textContent = results.monthlyPayment.toFixed(2);
+                                    rowCols[2].textContent = results.principalPayment[i].toFixed(2);
+                                    rowCols[3].textContent = results.interestPayment[i].toFixed(2);
+                                    rowCols[4].textContent = results.totalInterest[i].toFixed(2);
+                                    rowCols[5].textContent = '$'+Math.abs(results.remainingBalance[i].toFixed(2));
+
+                                    tableBody.appendChild(tableRow);
+                                }
+
+                                document.getElementById("monthlyPayment").innerHTML = results.monthlyPayment.toFixed(2);
+                                document.getElementById("totalPrincipcal").innerHTML = results.totalPrincipcal.toFixed(2);
+                                document.getElementById("totalInterest").innerHTML = results.totalInterestCounter.toFixed(2);
+                                document.getElementById("totalCost").innerHTML = (results.totalPrincipcal + results.totalInterestCounter).toFixed(2);
+                                
+                            }
                         </code>
                     </pre>
                 </div>
                 <div class="col-lg-4">
-                    <p>The Code is structed in one function</p>
-                    <h5>Hello World</h5>
-                    <p>Hello World is a function that displays an alert with a message of "Hello World"</p>
+                    <h5>getValues</h5>
+                    <p><strong>getValues</strong> gets the value input for <strong>loanAmount</strong>, <strong>loanPayment </strong> and  <strong>loanRate </strong> from the page.
+                        Then we check if the values are integers and <strong>loanRate </strong> between 1 to 100.<br>
+                        If the values are not passed the if condition, alret message will appear to enter the corrent values.<br>
+                        We passes those values to <strong>hasidaCalculator</strong>. The resulst stores in new varible and pass to <strong>displayResults</strong>.
+                       </p>
+                    <h5>hasidaCalculator</h5>
+                    <p><strong>hasidaCalculator</strong> takes in three parametes <strong>loanAmount</strong>, <strong>loanPayment </strong> and  <strong>loanRate </strong>.<br>
+                         We create new obj variable <strong>results</strong> to stores all the data varibles. Then we calculate the <strong>monthlyPayment</strong>.<br>
+                         We loop from 0 to <strong>loanPayment </strong> value(months to pay) and claculte all the data and store it in an obj (<strong>results</strong>).
+                         <br>We return the <strong>results</strong> obj.
+                        </p>
+                    <h5>displayResults</h5>
+                    <p><strong>displayResults</strong> takes in <strong>results</strong> and <strong>loanPayment</strong>.
+                        We declare two variables <strong>tableBody</strong> that will hold the html we will write to the page and <strong>templateRow</strong> to set up reuseable table template.
+                        <br>We loop into <strong>results</strong> and declare new vatible <strong>tableRow</strong> to import the <strong>templateRow</strong> content.
+                        <br>We declare another new varible <strong>rowCols</strong> and stores the tds (table data tag).
+                        <br>Then we push the <strong>results</strong> values by index to each td (table data) and add it to <strong>tableBody</strong> to display.
+                        When the loop finished we display the rest of the data.
+                       </p>
                 </div>
             </div>
         </div>
@@ -81,7 +192,7 @@
         <div class="container-fluid ">
             <div class="row row-cols-1 row-cols-lg-3 gy-2">
                 <div class="col text-light d-flex align-items-center order-last order-lg-first">
-                    <div class="smallfont"><span class="text-muted">&copy;2022</span> Kfir Avraham |
+                    <div class="smallfont"><span>&copy;2022</span> Kfir Avraham |
                         Kfirkfir89@gmail.com</div>
                 </div>
                 <div class="col d-flex align-items-center justify-content-center">
